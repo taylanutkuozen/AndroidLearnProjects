@@ -1,0 +1,49 @@
+Oncellikle, build.gradle.kts(Project:) icerisine asagidaki komutu yaziyoruz:
+id("androidx.navigation.safeargs.kotlin") version "2.7.7" apply false
+safeargs-->Fragmentlar arasinda arguman yollamak icin bulunan guvenli yapiyi kasteder.
+-2.nci olarak build.gradle.kts(App) icerisine asagidaki komutlari ekliyoruz:
+    id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")-->project kismina aldigimiz safeargs, app icerisinde uyguladigimizi gosterir.
+-3.ncu olarak kutuphaneleri projemize dahil etmek icin build.gradle.kts(App) icerisindeki dependencies kismina asagidaki komutlari ekliyoruz.
+val nav_version="2.7.7"
+//Kotlin
+implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+Ornegin val nav_version="2.7.4" bu sekilde yazip sync now yaptigimiz zaman uygulama en gunceli icin uyari veriyor hata vermiyor.
+OnDestroy calistiginda Activity bagli Fragmentlar hafizadan silinir.
+Fragmentlarin life cyclelarinin kendilerine has birtakim yapilari vardir.
+Bir Fragment eklemek --> app/src/main/com.example.proje_adimiz-->(Sag click) New-->Fragment-->Gallery-->BlankFragment-->layout otomatik olusturur.
+FrameLayout=Tek bir ekran tek bir sey gosterilecek ise mantikli
+Fragmentlari Navigation kullanarak nereden nereye gidilecek vs. hepsini ayarlayabiliyoruz.
+-res>sag click>new>Android Resource File>Resource Type "Navigation" olarak secilir.--> (Bu sekilde Navigation grafigi olustururuz.)
+*nav_graph.xml icerisine fragmentlara ekliyoruz. Ve hangi fragment nereden nereye gidecek gibi islemler buradan gerceklesiyor. Sol ust kosede New Destination butonundan Fragmentlarimizi gorebiliriz.
+*Fragment yanindaki ok ile(action oku) bir sonra nereye gidecegini belirleyebilmekteyiz.
+*action oku idsi olur, hedefini attribute secebiliriz, animasyon ekleyebiliriz.
+*Fragmentlara tiklayarak ozelliklerini gorebiliriz.
+*Yaninda ev(home) işareti olan Fragment uygulama acildiginda gosterilecek veya bu aktivite acildiginda ilk gorulecek fragment.
+*Fragement secip ardindan sol ust kosede olan ev(home) isareti kullanilmasi ile ilk gosterilecek fragmenti secebiliriz.
+*activity_main.xml icerisinde, Palette icerisinden NavHostFragment tool secmeliyiz.(Containers menusunden bulabiliriz.)
+*Acilan pencerede nav_graph seciyoruz.(Uygulamada nav_graph ismini verdik.)
+*Fragment life-cycler
+a.CREATED
+ 1.onCreate()
+ 2.onCreateView()[Initialized-->Gorunumler olusuyor.]
+ 3.onViewCreated()[Initialized-->Gorunumler kullanilabiliyor.]
+ 4.onViewStateRestored()[Created]
+b.STARTED
+    1.onStart[Started]
+c.RESUMED
+    1.onResume()[Resumed]
+d.STARTED
+    1.onPause()[Started]
+e.CREATED
+    1.onStop()[Created]
+    2.onSaveInstanceState()[Created]
+    3.onDestroyView()[Destroyed--Activity destroy etmeden Fragment bu sekilde destroy edilir.]
+f.DESTROYED
+    1.onDestroy()
+*Veriyi bir fragment icerisinden digerine tasimak icin arguman kullanmamiz gerekiyor.
+*nav_graph.xml icerisine girip, argumani nerede almak istiyorsak oraya olusturmaliyiz.(Ornekte SecondFragment)
+1.nav_graph.xml icerisinde SecondFragment seciyoruz, attributes menusunden Arguments ekle(+) diyoruz.
+2.Acilan pencerede, isim vermek gerekiyor, type secilmesi gerekiyor(ornekte string seciyoruz), array,null ve default value istege baglidir.
+------

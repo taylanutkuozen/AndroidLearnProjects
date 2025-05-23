@@ -1,0 +1,67 @@
+Jetpack Compose, XML kullanmadan UI(User Interface) tasarlayan bir Frameworktur.
+res dizinin icinde
+*drawable=Projede kullanacagimiz gorselleri barindirir. JPEG, PNG hatta XML uzantili dosyalar buradadir.
+*layout=Sayfa, oge tasarlamak istedigimiz kullanilmasi gerekli yerdir.
+*mipmap=Iconlarin yer aldigi dizin olan ic_launcher icerir.
+*values=Color ve Themes gibi arka plan icin farkli islemlerin yapilabilecegi xml barindirir. Uygulamamiz boyunca kullanacagimiz bir metin bir string vardir, bu stringleri strings.xml icerisinde tutabiliriz. Ayni zamanda buradan language yonetimi yapilabilmektedir.
+*xml=Proje icerisinde kendi xml lerimizi yazabiliriz.
+-activity_main.xml icerisinde;
+**Sayfalarin hemen altindaki menude Select Design Surface menusu vardir. Bu menuden Design, Blueprint veya Design&Blueprint secenekleri vardir.
+*Design=User Interface gosteren beyaz ekrandir.
+*Blueprint=Çok genis bir UI da karisiklik var ise Blueprint incelenerek fark edilebilir. Mavi ekran.
+**Select Design Surface menusu yaninda Orientation menusunden portait-landscape ayarlanir.
+**Orientation 2 yaninda "Device For Preview" var, buradan ekran boyutlarini secebiliriz. Ekran boyutlarinda nasil duruyor design kontrol edebiliriz.
+**Device For Preview menusunun yaninda Proje Adinin yazildigi alan Themes belirtmektedir. Values>Themes altinda eklenilen Theme buradan kullanilabilir.
+-Bir alt menude;
+**View Options var: Buranin icerisinde Show System UI onemlidir. Cihazin pil,saat gibi onemli islevlerini uygulama calisirkende gosterir.
+-----------------------------------
+sp ve dp Android'in pikseller icin kullandigi olcu birimleridir.
+textAlignment-->textView icerisindeki yaziyi hizalamak icin kullanilir.
+Cok karisik bir design'da neyi sectigimize emin degilsek sol alt Component Tree menusunden emin olarak secebiliriz.
+Android genellikle <1MB gorselleri daha cok tercih eder. >1MB gorseller icin farkli yollar kullanilir.
+**Gorseller drawable kopyalanirken gorsel_ismi kucuk harfle baslamali, kucuk harfler kullanilmalidir.
+*Gorseli design icerisinde kullanabilmek icin image-view surukle birak, sonrasinda bir pencere acilacak gorseli secmeliyiz.
+**Constraintler, design icerisinde itemlerin nerede duracağina karar verir.
+*Infer Constraints butonu itemleri otomatik constraint verir.
+**Constraintler Nedir? Design icindeki bir itemin ustten, alttan, sagdan, soldan ekranda veya diger itemlere gore hangi konumda olmasi gerektigini belirtmektedir.
+**Diyelim ki bir itemi merkezlemek istiyoruz. Component Tree uzerinden o itemi seceriz. Her kenarin ortasinda duran daireleri teker teker ekranin en ust, en alt, en sol, en sag kisimlarina goturur isek merkezlemis oluruz.
+**Diyelim ki ekranin sagindan solundan(genislik icin) veya asagisindan ustunden(height icin) belirli constraintleri verip, layout_width(genislik icin) veya layout_height(yukseklik) icin 0dp(match constraint) diyerek, ekran ne kadar buyuk veya kucuk olursa olsun item kendini ayarlar.
+-contentDescription=Gorme engelli dostlarimiz icin Android sesli bir sekilde bizim description verecegimiz aciklamayi soyler.
+*Clear All Contraints=Design icerisindeki tum itemlerin constraintlerini siler.
+*layout_width="match_parent":Ekran ne kadar genis ise yayilabildigi kadar yayilsin.
+*layout_width="wrap_content":Item icerisindeki icerik ne kadar ise genislik o kadar olur.(Metinsel icerikler icin kullanimi onerilir.)
+app:srcCompat="@drawable/a"-->ImageView icerisindeki gorseli ifade etmektedir.
+**ConstraintLayout=Cok esnektir. LinearLayout daha cok dikey veya yatay yon belirtmektedir.
+**Constraint Layout Scope=
+<androidx.constraintlayout.widget.ConstraintLayout
+    Ayarlar>
+</androidx.constraintlayout.widget.ConstraintLayout>
+**Linear Layout Scope
+<LinearLayout
+
+android:orientation="vertical" ("horizontal") --> bu komut android:id altina yazilmalidir.[Ayarlarda onemlidir.]
+  Ayarlar>
+</LinearLayout>
+***LinearLayout Orientation bilmelidir.(Orientation=Yan yana dizmek veya alt alta dizmek)
+*Orientation verildikten sonra dikkat edilmesi gereken husus:Itemler XML'de hangi sirada tanimli ise design'da ona göre dizilirler.(Baslangic:TextView,Button,ImageView)
+***Bir seyi gruplamak istiyorsak veya yan yana dizmek istiyorsak LinearLayout kullanabiliriz.
+**LinearLayout icerisinde bir itemin ortada durmasini istiyor isek--> android:layout_gravity="center" komutundan yararlanabiliriz.
+**Normal design tasarim asamasinda bir bug ile karsilasildi.(Derste LinearLayout Constraint Layout cevrilmeye calisildi.) File>InvalidateCaches>(hicbir sey isaretlemeden)>Invalidate and Restart diyoruz.
+*****Butun gorunumlerde width ve height zorunludur.
+**FrameLayout=Icinde tek bir sey gosterilecek ise kullanilir. Tek bir gorsel, tek bir harita vb.
+**RelativeLayout=ConstraintLayout olmadan once LinearLayout esneklik kazandiran bir yapidir.
+**GridLayout=Satir ve sutun gibi gruplama islevi icin kullanilir. LinearLayout daha kullanislidir.
+-------------------------
+ViewBinding Implementasyonu(Activity[userlarin etkilesime gectigi yerler] ve Fragmentlarda kullanilmaktadir.)
+-oncellikle gradle.kts(Module:app) icerisine kotlinOptionstan sonra asagidaki komut eklenir.
+ buildFeatures{
+        viewBinding=true
+    }
+ -Gradle Sync Now komutu ile senkronize edilir.
+ -Sonrasinda ilgili Activity icerisinde sirasiyla su komutlar eklenir:
+ *(onCreate oncesinde class baslangicinda)
+ private lateinit var binding:(Xml_adi_ne_ise_)Binding
+ *(onCreate icerisinde)
+ binding=(Xml_adi_ne_ise_)Binding.inflate(layoutInflater)
+ val view=binding.root
+ setContentView(view)

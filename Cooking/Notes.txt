@@ -1,0 +1,44 @@
+Room(local database-yerel veritabani)=Hic internet kullanmayan bir uygulama-cektigi verileri cihazda tutan bir uygulama
+android:gravity="center"
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/malzemeText">
+            </LinearLayout>
+-----------
+Permissions
+Ne izni ne zaman gerektigi onemlidir.
+1)Uygulama bu fonksiyonelligi sagliyorlar.
+2)Manifesti koyulmasi gerekiyor.
+*Manifest.permission google'da aramalisin.
+*Protection level:dangerous ise user'a permission sormaliyiz.
+*Protection level:normal ise manifest ekleyip geçebiliriz.
+***Read_Media_Images kullanacagiz.
+***Read_External_Storage kullanacagiz.
+---------------
+Room Database <--->(Get Dao) Rest of The App
+DataAccessObjects(Dao=Functionlari tutar,select,insert,delete,update)<--->(Get Entities from db, PersistChangesBackToDb)Rest of The App
+Entities<--->(get/set field values) Rest of The App
+----------------
+Database MainThread ile erisilemez cunku user UI uzun sure kilitleyebilir.
+----------------
+Reactive Programming=Diyelim ki bir verimiz var, o veri degistiginde(database,internet veya herhangi bir yerden gelebilir bu veri), veri geldiginde degiskeni de degistiriyor, o degisken degistiginde otomatik olarak UI degistirebilmek icin basvurabiliyoruz.
+Flowable veri donecek ise; Completable(insert, delete) islemleri icin kullanilir.
+---------
+xml icerisinde border taniminda
+ android:width="1dp"/>  --> kalinlik belirtir.
+ <corners android:radius="5dp"/> -->koselerin yuvarlikligini belirtir.
+ ----------
+ MVVM(Model-View-View-Model) Structure
+----------------
+Uygulamayi yayinlamak istiyor isek
+developer.android.com giris yapariz.
+LaunchPlayConsole giris yapariz.
+GooglePlayConsole hesaba sahibimiz olmaliyiz.
+----------
+royalty free images

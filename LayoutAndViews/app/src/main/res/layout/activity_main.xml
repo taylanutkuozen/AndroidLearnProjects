@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:srcCompat="@drawable/a"
+        tools:layout_editor_absoluteY="50dp" />
+    <!--android:layout_width="0dp" Bu komut ConstraintLayout icin kullanildi. -->
+    <!-- app:layout_constraintEnd_toEndOf="parent" Bu komut ConstraintLayout icin kullanildi. -->
+    <!--app:layout_constraintStart_toStartOf="parent" Bu komut ConstraintLayout icin kullanildi. -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="350dp"
+        android:layout_height="61dp"
+        android:text="Merhaba Android"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textColor="#03A9F4"
+        android:textSize="20sp"
+        android:layout_marginTop="42dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <!-- Buttonlarda tanimli olan margin_Top main ayar olarak buraya tasinmalidir. -->
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:onClick="KaydetFunction"
+            android:text="Kaydet" />
+        <!-- android:layout_marginTop="35dp"=Ic Ice Layout calismadigi icin kaldirildi. layout_gravity'de ayni durumdan oturu kaldirildi. -->
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="IptalFunction"
+            android:text="Iptal" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
