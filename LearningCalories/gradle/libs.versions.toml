@@ -1,0 +1,68 @@
+# gradle/libs.versions.toml
+
+[versions]
+agp = "8.3.1"
+kotlin = "1.9.0" # Projenizin Kotlin versiyonu 1.9.0 ise, kotlinOptions'taki jvmTarget'ı da 1.8'den 1.9'a çıkarmanız önerilir.
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.11.0"
+activity = "1.8.1"
+constraintlayout = "2.1.4"
+swiperefreshlayout = "1.1.0"
+preferenceKtx = "1.2.1"
+# Navigation ve Room versiyonlarını da buraya ekleyebilirsiniz, tutarlılık için.
+navigation = "2.7.7"
+room = "2.6.1"
+coroutines = "1.3.9"
+lifecycle = "2.7.0"
+retrofit = "2.8.1"
+glide = "4.11.0"
+ksp = "1.9.10-1.0.13" # KSP versiyonunu da buraya alalım
+safeArgs = "2.7.7" # Safe Args versiyonunu da buraya alalım
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" } # Eklenmiş
+androidx-preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preferenceKtx" } # Eklenmiş
+
+# Navigation
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+
+# Room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+
+# Coroutines
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Lifecycle
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+
+# Retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
+# Glide
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+
+[plugins]
+# BURASI ÖNEMLİ: alias ile çağırdığınız isimler buradaki isimlerle eşleşmeli
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+# Safe Args ve KSP'yi de Version Catalogs'a ekleyelim
+navigationSafeArgsKotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgs" }
+googleDevtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

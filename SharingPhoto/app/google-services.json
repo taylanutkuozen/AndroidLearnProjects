@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "566403785927",
+    "project_id": "sharingphotos-3a7ca",
+    "storage_bucket": "sharingphotos-3a7ca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566403785927:android:b5ac7531ce1dc8c8664ae2",
+        "android_client_info": {
+          "package_name": "com.example.sharingphoto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHA4XixFo3UQE9JbcjXC7B6s6KqHsq0jE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
