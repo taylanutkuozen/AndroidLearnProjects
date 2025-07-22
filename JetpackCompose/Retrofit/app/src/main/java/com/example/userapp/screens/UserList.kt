@@ -2,6 +2,7 @@ package com.example.userapp.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,25 +17,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.userapp.model.Address
 import com.example.userapp.model.Company
 import com.example.userapp.model.Geo
 import com.example.userapp.model.User
 import com.example.userapp.ui.theme.UserAppTheme
+import com.google.gson.Gson
+
 @Composable
-fun UserList(userList:List<User>){
+fun UserList(userList:List<User>,navController: NavController){
     LazyColumn(modifier=Modifier.fillMaxSize()
         .background(color=MaterialTheme.colorScheme.primaryContainer))
         {
             items(userList){
-                UserRow(user=it)
+                UserRow(user=it,navController)
         }
     }
 }
 @Composable
-fun UserRow(user: User){
+fun UserRow(user: User,navController:NavController){
     Column(modifier = Modifier.fillMaxWidth()
         .border(BorderStroke(2.dp, Color.Black))
+        .clickable {
+            navController.navigate("detail_screen/${Gson().toJson(user)}")
+        }
         .background(color=MaterialTheme.colorScheme.primaryContainer)
         .padding(10.dp)
     )

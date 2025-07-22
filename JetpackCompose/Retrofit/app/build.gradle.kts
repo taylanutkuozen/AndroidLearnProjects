@@ -75,4 +75,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    val nav_version="2.8.3"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 }
