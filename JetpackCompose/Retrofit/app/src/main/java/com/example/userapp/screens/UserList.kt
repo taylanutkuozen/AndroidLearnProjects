@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,17 +31,17 @@ fun UserList(userList:List<User>,navController: NavController){
     LazyColumn(modifier=Modifier.fillMaxSize()
         .background(color=MaterialTheme.colorScheme.primaryContainer))
         {
-            items(userList){
-                UserRow(user=it,navController)
+            itemsIndexed(userList){index,user->/*itemsIndexed indexi ve user verir*/
+                UserRow(user=user,navController,currentIndex=index)
         }
     }
 }
 @Composable
-fun UserRow(user: User,navController:NavController){
+fun UserRow(user: User,navController:NavController,currentIndex:Int){
     Column(modifier = Modifier.fillMaxWidth()
         .border(BorderStroke(2.dp, Color.Black))
         .clickable {
-            navController.navigate("detail_screen/${Gson().toJson(user)}")
+            navController.navigate("detail_screen/${currentIndex}")
         }
         .background(color=MaterialTheme.colorScheme.primaryContainer)
         .padding(10.dp)
