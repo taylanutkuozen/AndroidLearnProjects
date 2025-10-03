@@ -43,7 +43,7 @@ fun main() {/*fun ile fonksiyonu oluşturuyoruz. main birebir olarak yazılması
     var ornek2Integer=20000000000
     println(pi*2)
     //integer/integer=integer
-    //integer/integer=double(pyhton)
+    //integer/integer=double(python)
     println(5.0/2.0)//double doner
     val ornekDouble=3.0
     var sonucDouble=pi
